@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Labo | 慢香水工藝與實驗室</title>
+    <style>
+        /* CSS 樣式與動畫設定 */
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #111111;
+            --accent-color: #333333;
+            --gray-color: #777777;
+            --border-color: #d1d1d1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* 導覽列 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            border-bottom: 1px solid var(--border-color);
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .logo {
+            font-weight: 900;
+            letter-spacing: 3px;
+            font-size: 1.5rem;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gray-color);
+        }
+
+        /* 文字動畫 1：頁首淡入滑入 (fadeInDown) */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 文字動畫 2：標題左右滑入 (slideInLeft) */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 文字動畫 3：漸顯放大 (zoomInText) */
+        @keyframes zoomInText {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 主視覺 Hero Section */
+        .hero {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            animation: slideInLeft 1.2s ease-in-out;
+        }
+
+        .hero-content p {
+            color: var(--gray-color);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            animation: zoomInText 1.2s ease-in-out;
+        }
+
+        /* 按鈕與 Hover 變化 */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background-color: var(--text-color);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            border: 1px solid var(--text-color);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--text-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .hero-img {
+            background-color: #e5e3de;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-color);
+            font-family: monospace;
+            letter-spacing: 2px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* 區塊通用樣式 */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border-color);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* 品牌故事與理念 */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .card-box {
+            padding: 2rem;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+        }
+
+        /* 產品展示區 */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-tag {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* 聯絡資訊與 CTA */
+        .cta-section {
+            text-align: center;
+            padding: 6rem 5%;
+            background-color: #111111;
+            color: #ffffff;
+            max-width: 100%;
+        }
+
+        .cta-section h2, .cta-section p {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section .btn {
+            background-color: #ffffff;
+            color: #111111;
+            border-color: #ffffff;
+        }
+
+        .cta-section .btn:hover {
+            background-color: transparent;
+            color: #ffffff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* 響應式設計 (RWD) */
+        @media (max-width: 768px) {
+            .hero, .grid-2, .products-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav a {
+                margin: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <header>
+        <div class="logo">LE LABO</div>
+        <nav>
+            <a href="#story">品牌故事</a>
+            <a href="#values">核心價值</a>
+            <a href="#products">經典產品</a>
+            <a href="#contact">聯絡我們</a>
+        </nav>
+    </header>
+
+    <!-- 網站首頁 / Hero 區塊 -->
+    <section class="hero" style="border-top: none;">
+        <div class="hero-content">
+            <h1>生於紐約<br>成於格拉斯的慢香水</h1>
+            <p>我們是一個小眾香氛品牌，透過現場手工現調與極簡工藝，讓每個人都能擁有專屬於自己的獨特靈魂氣味。</p>
+            <a href="#products" class="btn">探索系列</a>
+        </div>
+        <div class="hero-img">
+            [ LAB-MADE PERFUME ]
+        </div>
+    </section>
+
+    <!-- 品牌故事與起源 -->
+    <section id="story">
+        <h2>品牌故事與起源</h2>
+        <div class="grid-2">
+            <div class="card-box">
+                <p style="margin-bottom: 1rem;"><strong>實驗室精神</strong></p>
+                <p>Le Labo 在法語中意為「實驗室」。2006 年創立於紐約諾利塔，我們相信香水的靈魂來自於調香師的工藝與真實的原料，而非鋪張的廣告與大眾化的流水線生產。</p>
+            </div>
+            <div class="card-box">
+                <p style="margin-bottom: 1rem;"><strong>新鮮現調工藝</strong></p>
+                <p>我們的經典香水在顧客眼前或特定實驗室專櫃現場手工調配、過濾並貼上標籤。瓶身標籤上印有專屬日期、地點與您的客製化文字，使每一瓶香水都擁有獨一無二的生命。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 品牌理念與核心價值 -->
+    <section id="values">
+        <h2>品牌理念與核心價值</h2>
+        <div class="grid-2">
+            <div class="card-box">
+                <p style="margin-bottom: 1rem;"><strong>真實與靈魂 (Authenticity & Soul)</strong></p>
+                <p>拒絕過度包裝與行銷迷思，將預算回饋至頂級香精原料本身，追求氣味與使用者記憶的深層共鳴。</p>
+            </div>
+            <div class="card-box">
+                <p style="margin-bottom: 1rem;"><strong>永續與無動物實驗 (Cruelty-Free)</strong></p>
+                <p>所有產品堅持 100% 素食（Vegan）、無動物實驗，並提供補充裝服務，對環境與生命保持最高的敬意。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 產品展示（展示3個產品） -->
+    <section id="products">
+        <h2>產品展示</h2>
+        <p style="color: var(--gray-color); margin-bottom: 1.5rem;">精選三款代表性香氛與手工藝品系列</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <span class="product-tag">EAU DE PARFUM</span>
+                <div class="product-title">SANTAL 33</div>
+                <p style="font-size: 0.9rem; color: var(--gray-color);">焚香、木質與皮革調。帶有強烈的個人風格與自由奔放的美國西部精神。</p>
+            </div>
+            <div class="product-card">
+                <span class="product-tag">EAU DE PARFUM</span>
+                <div class="product-title">ANOTHER 13</div>
+                <p style="font-size: 0.9rem; color: var(--gray-color);">龍涎香醚為主調，結合苔蘚與茉莉，散發低調、乾淨且貼近體香的獨特氣息。</p>
+            </div>
+            <div class="product-card">
+                <span class="product-tag">HOME FRAGRANCE</span>
+                <div class="product-title">FIGUE 29 蠟燭</div>
+                <p style="font-size: 0.9rem; color: var(--gray-color);">地中海黑無花果的溫潤香氣，為居家空間注入沉穩而放鬆的慢活氛圍。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡資訊與行動呼籲 (CTA) -->
+    <div id="contact" class="cta-section">
+        <h2>親臨實驗室體驗</h2>
+        <p>尋找屬於您的命定香氣，或為您的瓶身訂製專屬標籤。</p>
+        <a href="mailto:contact@lelabofragrances.com" class="btn">聯絡我們</a>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2026 Le Labo Task Assignment. Designed for Digital Brand Experience.</p>
+    </footer>
+
+</body>
+</html>
